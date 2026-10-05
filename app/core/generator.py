@@ -13,3 +13,15 @@ class PasswordGenerator:
         self.symboles = symboles
         self.validate = validate
 
+    def verifier_options(self):
+        if self.longueur <= 0 :
+            raise ValueError (
+                "La longueur doit etre superieur a 0"
+            )
+        if not (
+            self.miniscule or self.majuscule or self.chiffre or self.symboles
+        ):
+            raise ValueError (
+                "Il faut sélectionner au moins un type de caratere "
+            )
+
