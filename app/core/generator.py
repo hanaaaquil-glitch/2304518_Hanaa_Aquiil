@@ -2,6 +2,7 @@
 #2304518
 #hanaaaquil-glitch
 import string
+from random import randint
 
 
 class PasswordGenerator:
@@ -24,4 +25,42 @@ class PasswordGenerator:
             raise ValueError (
                 "Il faut sélectionner au moins un type de caratere "
             )
+
+    def generate_password(self):
+        self.verifier_options()
+        types = []
+        if self.miniscule :
+            types.append("abcdefghijklmnopqrstuvwxyz")
+        if self.majuscule :
+            types.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        if self.chiffre :
+            types.append("0123456789")
+        if self.symboles :
+            types.append("!@#$%&*?")
+        if self.validate and self.longueur < len(types):
+            raise ValueError (
+                "la longueur est trop petite pour les types sélectionnés"
+            )
+        caracteres = "".join(types)
+        valide = False
+
+        while not valide:
+            lettres = []
+            for i in range(self.longueur):
+                indice = randint(0,len(caracteres)-1)
+                lettres.append(caracteres[indice])
+            mot_de_passe = "".join(lettres)
+            valide = True
+
+            if self.validate:
+                for type in types :
+                    present = False
+
+                    for caractere in mot_de_passe:
+                        if caractere in type :
+                            present = True
+                    if not present:
+                        valide = False
+            return mot_de_passe
+
 
