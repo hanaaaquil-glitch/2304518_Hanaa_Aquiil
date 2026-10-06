@@ -16,6 +16,7 @@ parser.add_argument("--validate", action="store_true")
 
 args = parser.parse_args()
 
+
 try:
     generateur = generator.PasswordGenerator(
         args.length,
