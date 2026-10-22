@@ -7,6 +7,7 @@ QCheckBox,
 )
 from app.core.generator import PasswordGenerator
 
+
 class GenerateurFenetre(QWidget):
     def __init__(self):
         super().__init__()
@@ -37,3 +38,19 @@ class GenerateurFenetre(QWidget):
         layout.addWidget(self.resultat)
         layout.addWidget(self.bouton_generer)
         self.setLayout(layout)
+
+    def generer(self):
+        generateur = PasswordGenerator(
+            16,
+            self.miniscule.isChecked(),
+            self.majuscule.isChecked(),
+            self.chiffre.isChecked(),
+            self.symboles.isChecked(),
+            self.validation.isChecked(),
+
+        )
+        try:
+            mot_de_passe = generateur.generate_password()
+            self.resultat.setText(mot_de_passe)
+        except ValueError as erreur :
+            self.resultat.setText(str(erreur))
