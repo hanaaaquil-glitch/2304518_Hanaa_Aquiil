@@ -24,7 +24,7 @@ class Storage:
                 raise ValueError("L'email doir etre du texte")
             if not isinstance(entree["mot_de_passe"], str):
                 raise ValueError("Le mot de passe doit etre du texte")
-            return entrees
+        return entrees
 
     def sauvegarder(self,entrees):
         with open(self.fichier, "w",encoding="utf-8") as fichier:

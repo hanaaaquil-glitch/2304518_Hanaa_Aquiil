@@ -61,6 +61,6 @@ class PasswordGenerator:
                             present = True
                     if not present:
                         valide = False
-            return mot_de_passe
+        return mot_de_passe
 
 
