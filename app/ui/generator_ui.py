@@ -16,6 +16,8 @@ class GenerateurFenetre(QWidget):
 
         self.setWindowTitle("Generateur de mot de passe")
         self.longueur = 16
+        self.mot_de_passe = ""
+        self.masque = True
         self.label_longueur = QLabel(
             f"Longueur : {self.longueur}"
         )
@@ -52,6 +54,8 @@ class GenerateurFenetre(QWidget):
         self.validation = QCheckBox("Veuillez choisir au moins un caractere de chaque type choisi")
 
         self.resultat = QLabel("Sélectionne les types de caracteres")
+        self.bouton_afficher = QPushButton("Afficher")
+        self.bouton_afficher.clicked.connect(self.changer_affichage)
         self.bouton_generer = QPushButton("generer")
         self.bouton_generer.clicked.connect(self.generer)
 
@@ -67,6 +71,7 @@ class GenerateurFenetre(QWidget):
         layout.addWidget(self.validation)
         layout.addWidget(self.resultat)
         layout.addWidget(self.bouton_generer)
+        layout.addWidget(self.bouton_afficher)
         self.setLayout(layout)
 
     def generer(self):
@@ -80,9 +85,15 @@ class GenerateurFenetre(QWidget):
 
         )
         try:
-            mot_de_passe = generateur.generate_password()
-            self.resultat.setText(mot_de_passe)
-        except ValueError as erreur :
+            self.mot_de_passe = generateur.generate_password()
+            self.masque = True
+            self.bouton_afficher.setText("Afficher")
+            self.afficher_resultat()
+
+        except ValueError as erreur:
+            self.mot_de_passe = ""
+            self.masque = True
+            self.bouton_afficher.setText("Afficher")
             self.resultat.setText(str(erreur))
 
     def changer_longueur(self, valeur):
@@ -100,3 +111,19 @@ class GenerateurFenetre(QWidget):
         if self.longueur < 64:
             self.slider.setValue(self.longueur + 1)
 
+    def afficher_resultat(self):
+        if self.masque:
+            self.resultat.setText("*" * len(self.mot_de_passe)) #si mdp est 4 carc donc : ****
+        else:
+            self.resultat.setText(self.mot_de_passe)
+
+    def changer_affichage(self):
+        if self.mot_de_passe == "":
+            return
+        self.masque = not self.masque
+        if self.masque:
+            self.bouton_afficher.setText("Afficher")
+        else:
+            self.bouton_afficher.setText("masquer")
+
+        self.afficher_resultat()
