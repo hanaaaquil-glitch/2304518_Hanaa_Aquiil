@@ -3,5 +3,7 @@ name = "pythonproject"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
+    "entree>=2.4.2",
+    "myapplication>=0.1.0",
     "pyside6>=6.12.0",
 ]
