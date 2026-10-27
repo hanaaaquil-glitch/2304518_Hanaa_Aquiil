@@ -53,7 +53,7 @@ class GenerateurFenetre(QWidget):
         self.majuscule = QCheckBox("Majuscule")
         self.chiffre = QCheckBox("Chiffre")
         self.symboles = QCheckBox("Symbole")
-        self.validation = QCheckBox("Veuillez choisir au moins un caractere de chaque type choisi")
+        self.validation=QCheckBox("Veuillez choisir au moins un caractere de chaque type choisi")
 
         self.resultat = QLabel("Sélectionne les types de caracteres")
         self.bouton_afficher = QPushButton("Afficher")
