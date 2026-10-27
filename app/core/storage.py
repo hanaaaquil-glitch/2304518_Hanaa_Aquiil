@@ -1,3 +1,6 @@
+#Hanaa Aquil
+#2304518
+#hanaaaquil-glitch
 import json
 class Storage:
     def __init__(self,fichier="vault.json"):

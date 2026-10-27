@@ -1,3 +1,6 @@
+#Hanaa Aquil
+#2304518
+#hanaaaquil-glitch
 from PySide6.QtWidgets import (
     QApplication,
     QWidget,
