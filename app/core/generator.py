@@ -1,7 +1,6 @@
 #Hanaa Aquil
 #2304518
 #hanaaaquil-glitch
-import string
 from random import randint
 
 
@@ -53,11 +52,11 @@ class PasswordGenerator:
             valide = True
 
             if self.validate:
-                for type in types :
+                for groupe in types :
                     present = False
 
                     for caractere in mot_de_passe:
-                        if caractere in type :
+                        if caractere in groupe :
                             present = True
                     if not present:
                         valide = False

@@ -1,13 +1,15 @@
 from PySide6.QtWidgets import (
+    QApplication,
     QWidget,
     QVBoxLayout,
     QLabel,
     QPushButton,
     QCheckBox,
-    QSlider, QHBoxLayout,
+    QSlider, QHBoxLayout, QMessageBox,
 )
 from PySide6.QtCore import Qt
 from app.core.generator import PasswordGenerator
+
 
 
 class GenerateurFenetre(QWidget):
@@ -38,9 +40,6 @@ class GenerateurFenetre(QWidget):
         self.ligne_longueur.addWidget(self.slider)
         self.ligne_longueur.addWidget(bouton_plus)
 
-
-
-
         self.resize(450,400)
         self.init_ui()
 
@@ -57,6 +56,8 @@ class GenerateurFenetre(QWidget):
         self.bouton_afficher = QPushButton("Afficher")
         self.bouton_afficher.clicked.connect(self.changer_affichage)
         self.bouton_generer = QPushButton("generer")
+        self.bouton_copier = QPushButton("Copier")
+        self.bouton_copier.clicked.connect(self.copier)
         self.bouton_generer.clicked.connect(self.generer)
 
         layout.addWidget(self.titre)
@@ -72,6 +73,8 @@ class GenerateurFenetre(QWidget):
         layout.addWidget(self.resultat)
         layout.addWidget(self.bouton_generer)
         layout.addWidget(self.bouton_afficher)
+        layout.addWidget(self.bouton_copier)
+
         self.setLayout(layout)
 
     def generer(self):
@@ -99,9 +102,7 @@ class GenerateurFenetre(QWidget):
     def changer_longueur(self, valeur):
         self.longueur = valeur
 
-        self.label_longueur.setText(
-            f"Longueur : {self.longueur}"
-        )
+        self.label_longueur.setText( f"Longueur : {self.longueur}" )
 
     def diminuer_longueur(self):
         if self.longueur > 1:
@@ -119,7 +120,7 @@ class GenerateurFenetre(QWidget):
 
     def changer_affichage(self):
         if self.mot_de_passe == "":
-            return
+            return #cvd si le mdp est vide
         self.masque = not self.masque
         if self.masque:
             self.bouton_afficher.setText("Afficher")
@@ -127,3 +128,8 @@ class GenerateurFenetre(QWidget):
             self.bouton_afficher.setText("masquer")
 
         self.afficher_resultat()
+
+    def copier(self):
+        if self.mot_de_passe != "":
+            QApplication.clipboard().setText(self.mot_de_passe)
+            #inspiré par : https://www.commentcoder.com/blog/python-copier-presse-papiers

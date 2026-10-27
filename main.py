@@ -36,13 +36,13 @@ if args.no_gui:
 
     except ValueError as erreur:
         print(f"Erreur : {erreur}")
-        sys.exit(1)
+        sys.exit()
 
 else:
     from PySide6.QtWidgets import QApplication
     from app.ui.main_window import CoffreFenetre
 
-    app = QApplication([sys.argv[0]]) #je dois peut etre enlever la liste
+    app = QApplication(sys.argv) #je dois peut etre enlever la liste
 
     fenetre = CoffreFenetre(args.vault_file)
     fenetre.show()
