@@ -13,8 +13,8 @@ class Storage:
 
 
         except FileNotFoundError:
-            return []   # pourra etre changer en : print(f"Fichier {filename} introuvable")
-                        # return default
+            return []
+
 
         if not isinstance(loaded_data, list):
             raise ValueError("le coffre doit avoir au moins une liste")
@@ -31,7 +31,7 @@ class Storage:
 
             if not isinstance(data["mot_de_passe"], str):
                 raise ValueError("Le mot de passe doit etre du texte")
-        return loaded_data # prof a fait un return True
+        return loaded_data
 
     def sauvegarder(self,entrees):
         with open(self.fichier, "w",encoding="utf-8") as fichier:

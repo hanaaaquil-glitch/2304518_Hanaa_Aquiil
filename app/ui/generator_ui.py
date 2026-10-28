@@ -117,13 +117,13 @@ class GenerateurFenetre(QWidget):
 
     def afficher_resultat(self):
         if self.masque:
-            self.resultat.setText("*" * len(self.mot_de_passe)) #si mdp est 4 carc donc : ****
+            self.resultat.setText("*" * len(self.mot_de_passe))
         else:
             self.resultat.setText(self.mot_de_passe)
 
     def changer_affichage(self):
         if self.mot_de_passe == "":
-            return #cvd si le mdp est vide
+            return
         self.masque = not self.masque
         if self.masque:
             self.bouton_afficher.setText("Afficher")

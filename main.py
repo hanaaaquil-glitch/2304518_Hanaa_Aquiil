@@ -42,7 +42,7 @@ else:
     from PySide6.QtWidgets import QApplication
     from app.ui.main_window import CoffreFenetre
 
-    app = QApplication(sys.argv) #je dois peut etre enlever la liste
+    app = QApplication(sys.argv)
 
     fenetre = CoffreFenetre(args.vault_file)
     fenetre.show()

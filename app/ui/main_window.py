@@ -39,7 +39,7 @@ class EntreeWidget(QWidget):
 
         self.setLayout(layout)
     def demander_modification(self):
-        self.modifie_demande.emit(self.entree) # pour émettre le signal
+        self.modifie_demande.emit(self.entree)
     def demander_suppression(self):
         self.supprime_demande.emit(self.entree)
 
